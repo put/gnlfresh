@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "gcc",
+			"args": [
+				"-g", // Add this line
+				"main.c",
+				"get_next_line.c",
+				"get_next_line_utils.c",
+				"-o",
+				"a.out"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": ["$gcc"]
+		}
+	]
+}

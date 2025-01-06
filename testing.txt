@@ -1,0 +1,10 @@
+This line is less than 32
+This line is also less than 32
+This line is not less than 32!!
+This line is a little more than 32
+And this line still has a NL
+
+
+Above me are two empty lines, does that work?
+
+

@@ -16,12 +16,12 @@
 
 int main(void)
 {
-	int fd = open("testing.txt", O_RDONLY);
+	int fd = open("43_with_nl", O_RDONLY);
 	char *line = get_next_line(fd);
-	while (line)
-	{
-		printf("%s", line);
-		free(line);
-		line = get_next_line(fd);
-	}
+	// while (line)
+	// {
+	printf("%s", line);
+	// 	free(line);
+	// 	line = get_next_line(fd);
+	// }
 }

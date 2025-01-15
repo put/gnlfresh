@@ -39,16 +39,17 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-char	*ft_substr(char *source, size_t start, size_t length) {
+char	*ft_substr(char *source, size_t start, size_t length) 
+{
 	char	*result;
 	char 	*source_start;
 	char 	*result_start;
 	
 	if (start >= ft_strlen(source))
 		return (NULL);
-	result = malloc(length + 1);
+	result = malloc(length + 1); //leak
 	if (!result)
-		return (NULL);
+		return (free(source), source = NULL, NULL);
 	source_start = source + start;
 	result_start = result;
 	while (length-- > 0)
@@ -62,23 +63,23 @@ void	*ft_realloc(void *ptr, size_t new_size, size_t old_size) {
 	size_t	i;
 	if (new_size == 0)
 		return(free(ptr), NULL);
-	if (!ptr)
-		return malloc(new_size);
-	void *new_ptr = malloc(new_size);
+	void *new_ptr = malloc(new_size); //leak
 	if (!new_ptr)
-		return NULL;
+		return (free(ptr), ptr = NULL, NULL);
 	if (old_size < new_size)
 		copy_size = old_size;
 	else
 		copy_size = new_size;
 	i = 0;
-	while (i < copy_size)
+	while (ptr && i < copy_size)
 	{
 		((char *)new_ptr)[i] = ((char *)ptr)[i];
 		i++;
 	}
+	while (i < new_size)
+		((char *)new_ptr)[i++] = '\0';
 	free(ptr);
-	return new_ptr;
+	return (new_ptr);
 }
 
 size_t	ft_strlcat(char *dst, char *src, size_t size)

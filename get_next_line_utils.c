@@ -39,15 +39,15 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-char	*ft_substr(char *source, size_t start, size_t length) 
+char	*ft_substr(char *source, size_t start, size_t length)
 {
 	char	*result;
-	char 	*source_start;
-	char 	*result_start;
-	
+	char	*source_start;
+	char	*result_start;
+
 	if (start >= ft_strlen(source))
 		return (NULL);
-	result = malloc(length + 1); //leak
+	result = malloc(length + 1);
 	if (!result)
 		return (free(source), source = NULL, NULL);
 	source_start = source + start;
@@ -58,12 +58,15 @@ char	*ft_substr(char *source, size_t start, size_t length)
 	return (result_start);
 }
 
-void	*ft_realloc(void *ptr, size_t new_size, size_t old_size) {
+void	*ft_realloc(void *ptr, size_t new_size, size_t old_size)
+{
 	size_t	copy_size;
 	size_t	i;
+	void	*new_ptr;
+
 	if (new_size == 0)
-		return(free(ptr), NULL);
-	void *new_ptr = malloc(new_size); //leak
+		return (free(ptr), NULL);
+	new_ptr = malloc(new_size);
 	if (!new_ptr)
 		return (free(ptr), ptr = NULL, NULL);
 	if (old_size < new_size)
